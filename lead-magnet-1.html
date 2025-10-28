@@ -1,125 +1,106 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hướng dẫn sử dụng Form Lead Magnet</title>
-</head>
-<body>
-    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-        <h1>📋 Hướng dẫn sử dụng Form Lead Magnet</h1>
-        
-        <h2>🎯 Mục đích</h2>
-        <p>Form này được tạo để thu thập email của khách hàng tiềm năng và cung cấp tài liệu "Black Friday Marketing Checklist 2025" miễn phí.</p>
-        
-        <h2>⚙️ Cài đặt</h2>
-        
-        <h3>1. Thiết lập Google Sheets</h3>
-        <ul>
-            <li>Tạo một Google Sheets mới</li>
-            <li>Vào <strong>Extensions > Apps Script</strong></li>
-            <li>Sao chép đoạn code JavaScript trong comment vào Apps Script</li>
-            <li>Lưu và deploy với quyền "Anyone"</li>
-            <li>Copy URL webhook và thay thế vào biến <code>scriptURL</code></li>
-        </ul>
-        
-        <h3>2. Cập nhật URL tài liệu</h3>
-        <p>Thay đổi <code>checklistUrl</code> thành link Google Docs của bạn:</p>
-        <pre><code>const checklistUrl = 'YOUR_GOOGLE_DOCS_LINK_HERE';</code></pre>
-        
-        <h2>🔧 Tính năng</h2>
-        
-        <h3>✅ Bảo mật</h3>
-        <ul>
-            <li><strong>Honeypot:</strong> Chống bot spam với trường ẩn "company"</li>
-            <li><strong>Validation:</strong> Kiểm tra định dạng email hợp lệ</li>
-            <li><strong>Rate limiting:</strong> Ngăn submit liên tục</li>
-        </ul>
-        
-        <h3>📱 Responsive</h3>
-        <ul>
-            <li>Tự động stack trên mobile (< 480px)</li>
-            <li>Responsive design cho mọi thiết bị</li>
-        </ul>
-        
-        <h3>♿ Accessibility</h3>
-        <ul>
-            <li>ARIA labels và roles</li>
-            <li>Screen reader support</li>
-            <li>Keyboard navigation</li>
-        </ul>
-        
-        <h3>💾 User Experience</h3>
-        <ul>
-            <li><strong>LocalStorage:</strong> Lưu email để lần sau không phải nhập lại</li>
-            <li><strong>Instant open:</strong> Mở tài liệu ngay lập tức</li>
-            <li><strong>Status feedback:</strong> Thông báo rõ ràng cho user</li>
-        </ul>
-        
-        <h2>📊 Dữ liệu thu được</h2>
-        <p>Form sẽ ghi vào Google Sheets với format:</p>
-        <table border="1" style="border-collapse: collapse; width: 100%;">
-            <tr>
-                <th>Cột A</th>
-                <th>Cột B</th>
-                <th>Cột C</th>
-            </tr>
-            <tr>
-                <td>Thời gian submit</td>
-                <td>Email address</td>
-                <td>URL trang web</td>
-            </tr>
-        </table>
-        
-        <h2>🎨 Tùy chỉnh</h2>
-        
-        <h3>Thay đổi màu sắc</h3>
-        <p>Sửa CSS variables trong phần <code>.email-box__btn</code>:</p>
-        <pre><code>background: linear-gradient(90deg, #YOUR_COLOR_1, #YOUR_COLOR_2);</code></pre>
-        
-        <h3>Thay đổi nội dung</h3>
-        <ul>
-            <li><strong>Tiêu đề:</strong> Sửa text trong <code>.email-box__title</code></li>
-            <li><strong>Mô tả:</strong> Sửa text trong <code>.email-box__desc</code></li>
-            <li><strong>Button text:</strong> Sửa <code>button.textContent</code> trong JS</li>
-        </ul>
-        
-        <h2>🚀 Triển khai</h2>
-        <ol>
-            <li>Upload file HTML lên server</li>
-            <li>Đảm bảo ảnh icon accessible</li>
-            <li>Test form trên nhiều thiết bị</li>
-            <li>Kiểm tra Google Sheets nhận được data</li>
-        </ol>
-        
-        <h2>🔍 Troubleshooting</h2>
-        
-        <h3>Form không submit được</h3>
-        <ul>
-            <li>Kiểm tra <code>scriptURL</code> có đúng không</li>
-            <li>Đảm bảo Google Apps Script đã deploy</li>
-            <li>Check console browser để xem lỗi</li>
-        </ul>
-        
-        <h3>Không mở được tài liệu</h3>
-        <ul>
-            <li>Kiểm tra <code>checklistUrl</code></li>
-            <li>Đảm bảo Google Docs có quyền "Anyone with link"</li>
-            <li>Test link trực tiếp</li>
-        </ul>
-        
-        <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 20px 0;">
-            <h3>💡 Pro Tips</h3>
-            <ul>
-                <li>Thêm Google Analytics để track conversion</li>
-                <li>A/B test các button text khác nhau</li>
-                <li>Tích hợp với email marketing tools</li>
-                <li>Thêm social proof (số lượng downloads)</li>
-            </ul>
-        </div>
-    </div>
-</body>
-</html>
+========================================
+📋 HƯỚNG DẪN SỬ DỤNG FORM LEAD MAGNET
+========================================
+
+🎯 MỤC ĐÍCH
+-----------
+Form này thu thập email của khách hàng tiềm năng và cung cấp tài liệu "Black Friday Marketing Checklist 2025" miễn phí.
+
+⚙️ CÀI ĐẶT
+-----------
+
+BƯỚC 1: Thiết lập Google Sheets
+- Tạo một Google Sheets mới
+- Vào Extensions > Apps Script
+- Sao chép đoạn code trong comment vào Apps Script:
+
+function doPost(e) { 
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet(); 
+    var data = JSON.parse(e.postData.contents || '{}'); 
+    var email = data.email || ''; 
+    var url = data.url || ''; 
+    sheet.appendRow([new Date(), email, url]);
+    return ContentService.createTextOutput('OK').setMimeType(ContentService.MimeType.TEXT); 
+}
+
+- Lưu và deploy với quyền "Anyone"
+- Copy URL webhook và thay thế vào biến scriptURL trong code
+
+BƯỚC 2: Cập nhật URL tài liệu
+- Tìm dòng: const checklistUrl = 'https://docs.google.com/...'
+- Thay bằng link Google Docs của bạn
+
+🔧 TÍNH NĂNG
+-------------
+
+✅ Bảo mật:
+- Honeypot: Chống bot spam với trường ẩn "company"
+- Validation: Kiểm tra định dạng email hợp lệ
+- Rate limiting: Ngăn submit liên tục
+
+📱 Responsive:
+- Tự động chuyển layout dọc trên mobile (< 480px)
+- Hoạt động tốt trên mọi thiết bị
+
+♿ Accessibility:
+- ARIA labels và roles
+- Hỗ trợ screen reader
+- Điều hướng bằng bàn phím
+
+💾 Trải nghiệm người dùng:
+- LocalStorage: Lưu email để lần sau không phải nhập lại
+- Mở tài liệu ngay lập tức
+- Thông báo rõ ràng cho user
+
+📊 DỮ LIỆU THU ĐƯỢC
+--------------------
+Form sẽ ghi vào Google Sheets:
+- Cột A: Thời gian submit
+- Cột B: Email address  
+- Cột C: URL trang web
+
+🎨 TÙY CHỈNH
+------------
+
+Thay đổi màu sắc:
+- Tìm: background: linear-gradient(90deg, #3A0CA3, #4361EE);
+- Thay bằng mã màu bạn muốn
+
+Thay đổi nội dung:
+- Tiêu đề: Sửa text trong class="email-box__title"
+- Mô tả: Sửa text trong class="email-box__desc"  
+- Button: Sửa button.textContent trong JavaScript
+
+🚀 TRIỂN KHAI
+-------------
+1. Upload file HTML lên server
+2. Đảm bảo ảnh icon có thể truy cập được
+3. Test form trên nhiều thiết bị
+4. Kiểm tra Google Sheets có nhận được data không
+
+🔍 TROUBLESHOOTING
+------------------
+
+Vấn đề: Form không submit được
+Giải pháp:
+- Kiểm tra scriptURL có đúng không
+- Đảm bảo Google Apps Script đã deploy  
+- Mở console browser để xem lỗi
+
+Vấn đề: Không mở được tài liệu
+Giải pháp:
+- Kiểm tra checklistUrl
+- Đảm bảo Google Docs có quyền "Anyone with link"
+- Test link trực tiếp
+
+💡 PRO TIPS
+-----------
+- Thêm Google Analytics để track conversion
+- A/B test các button text khác nhau
+- Tích hợp với email marketing tools (Mailchimp, etc.)
+- Thêm social proof (VD: "Đã có 5,000+ người tải xuống")
+
+========================================
 
 
 <!--
@@ -299,7 +280,7 @@ function doPost(e) {
     <script>
         (function () {
             // change your scriptURL here
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbz8ZwwwOuM4ij0ZQqp4rq9C-REX3-U7UmQ6e59T4SxDOm4nEQ_NuCgrrRAby8LYcjx9ag/exec';
+            const scriptURL = 'https://script.google.com/macros/s/demo-123abcxyz/exec';
             const container = document.querySelector('.email-box');
             if (!container) return;
 
@@ -352,7 +333,7 @@ function doPost(e) {
                 const pageUrl = window.location.href;
 
                 // Open the checklist immediately to avoid any delay (change to your URL)
-                const checklistUrl = 'https://docs.google.com/document/d/1Wwb3Sdq-7O--zPakwjZdACfqa6ZbX4ifhYwTP5VuCCo/copy';
+                const checklistUrl = 'https://docs.google.com/document/d/link-chuyen-huong/copy';
                 const preOpened = window.open(checklistUrl, '_blank');
 
                 // Abort fetch if it hangs too long
