@@ -1,0 +1,271 @@
+<!--
+// app script for Google Sheets to handle form submissions
+function doPost(e) { 
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet(); 
+  var data = JSON.parse(e.postData.contents || '{}'); 
+  var email = data.email || ''; 
+  var url = data.url || ''; 
+  sheet.appendRow([new Date(), email, url]); // A: time, B: email, C: URL 
+  return ContentService.createTextOutput('OK') .setMimeType(ContentService.MimeType.TEXT); 
+} 
+-->
+
+
+<div class="lead-magnet-2 box-add-changed">
+    <div class="lead-magnet-2__container" role="region" aria-labelledby="lead-magnet-2-title">
+        <h2 class="lead-magnet-2__title" id="lead-magnet-2-title">Get the Free BFCM 2025 Toolkit to maximize post-BFCM
+            retention:</h2>
+        <div class="lead-magnet-2__description">
+            <ul class="lead-magnet-2__list">
+                <li class="lead-magnet-2__list-item">✔️ 3 Case Studies – Real success stories from top brands</li>
+                <li class="lead-magnet-2__list-item">✔️ BFCM Loyalty Playbook – 5 quick-win campaigns (15 pages)</li>
+                <li class="lead-magnet-2__list-item">✔️ Complete Checklist – Pre, during & post-BFCM action plans</li>
+                <li class="lead-magnet-2__list-item">✔️ 1-on-1 Strategy Call – 30-min session with retention specialist
+                </li>
+                <li class="lead-magnet-2__list-item">✔️ 30% OFF for 6 Months – Exclusive discount on all Joy plans</li>
+            </ul>
+        </div>
+        <div class="lead-magnet-2__form-wrapper">
+            <form class="lead-magnet-2__form" novalidate="">
+                <label for="lead-email-2" class="sr-only lead-magnet-2__hidden">Email address</label>
+                <input id="lead-email-2" name="email" type="email" placeholder="Enter your email"
+                    class="lead-magnet-2__input" autocomplete="email" inputmode="email" required=""
+                    aria-describedby="lead-magnet-2-status">
+                <!-- Honeypot for bots: keep visible to DOM but hidden off-screen -->
+                <label for="lead-company-2" class="sr-only lead-magnet-2__hidden">Company</label>
+                <input id="lead-company-2" name="company" type="text"
+                    class="lead-magnet-2__honeypot lead-magnet-2__hidden" tabindex="-1" aria-hidden="true"
+                    autocomplete="off">
+
+                <button type="submit" class="lead-magnet-2__button" aria-label="Get the toolkit">Get the
+                    Toolkit</button>
+            </form>
+            <p class="lead-magnet-2__status" id="lead-magnet-2-status" role="status" aria-live="polite"></p>
+        </div>
+    </div>
+    <style>
+        .lead-magnet-2__container {
+            max-width: 100%;
+            width: 785px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            border-radius: 24px;
+            background: rgba(244, 246, 248);
+        }
+
+        .lead-magnet-2__title {
+            margin: 0 !important;
+            text-align: center !important;
+        }
+
+        .lead-magnet-2__description {
+            margin: 16px auto 24px auto;
+            font-size: 18px;
+            line-height: 1.5;
+
+            width: fit-content;
+        }
+
+        .lead-magnet-2__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lead-magnet-2__list-item:nth-child(n+2) {
+            margin-top: 8px;
+        }
+
+        .lead-magnet-2__form-wrapper {
+            margin-top: 8px;
+        }
+
+        .lead-magnet-2__form {
+            display: flex;
+            gap: 16px;
+            margin: 0;
+        }
+
+        .lead-magnet-2__input {
+            padding: 12px 16px;
+            height: 48px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s ease;
+
+            flex-grow: 1;
+        }
+
+        .lead-magnet-2__input:focus {
+            border-color: #007cba;
+        }
+
+        .lead-magnet-2__hidden {
+            display: none;
+        }
+
+        .lead-magnet-2__button {
+            padding: 12px 24px;
+            background: rgba(29, 78, 216);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .lead-magnet-2__button:hover:not(:disabled) {
+            background: #1e3a8a;
+        }
+
+        /* Modifier: button loading state */
+        .lead-magnet-2__button--loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Element: status */
+        .lead-magnet-2__status {
+            margin: 16px 0 0 0;
+            font-size: 14px;
+
+            text-align: center !important;
+            font-weight: 500;
+        }
+
+        /* Modifier: status error state */
+        .lead-magnet-2__status--error {
+            color: #d32f2f;
+        }
+
+        .lead-magnet-2__status--success {
+            color: #2e7d32;
+        }
+    </style>
+    <script>
+        (function () {
+            // change your scriptURL here
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz8ZwwwOuM4ij0ZQqp4rq9C-REX3-U7UmQ6e59T4SxDOm4nEQ_NuCgrrRAby8LYcjx9ag/exec';
+            const container = document.querySelector('.lead-magnet-2__container');
+            if (!container) return;
+
+            const form = container.querySelector('.lead-magnet-2__form');
+            const input = container.querySelector('.lead-magnet-2__input');
+            const button = container.querySelector('.lead-magnet-2__button');
+            const status = container.querySelector('.lead-magnet-2__status');
+            const honeypot = container.querySelector('.lead-magnet-2__honeypot');
+
+            // Prefill from localStorage if available
+            try {
+                const saved = localStorage.getItem('lead_email');
+                if (saved) input.value = saved;
+            } catch (e) { /* ignore */ }
+
+            let isSubmitting = false;
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                if (isSubmitting) return;
+
+                clearStatus();
+
+                const email = (input.value || '').trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!email) {
+                    showError('Please enter a valid email address (e.g., example@email.com)');
+                    input.focus();
+                    return;
+                }
+                if (!emailRegex.test(email)) {
+                    showError('Please enter a valid email address (e.g., example@email.com)');
+                    input.focus();
+                    return;
+                }
+
+                // If honeypot is filled, probably a bot: pretend success
+                if (honeypot && honeypot.value) {
+                    showSuccessMessage();
+                    return;
+                }
+
+                isSubmitting = true;
+                setLoading(true);
+
+                // Save email for convenience next time
+                try { localStorage.setItem('lead_email', email); } catch (e) { /* ignore */ }
+
+                const pageUrl = window.location.href;
+
+                // Abort fetch if it hangs too long
+                const controller = ('AbortController' in window) ? new AbortController() : null;
+                const signal = controller ? controller.signal : undefined;
+                const timeoutId = controller ? setTimeout(() => controller.abort(), 10000) : null; // 10s
+
+                try {
+                    await fetch(scriptURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, url: pageUrl, userAgent: navigator.userAgent }),
+                        signal
+                    }).catch(function () { /* swallow since no-cors gives opaque */ });
+
+                    // Show success message instead of opening new tab
+                    showSuccessMessage();
+                } catch (err) {
+                    // Show success message even on error for better user experience
+                    showSuccessMessage();
+                } finally {
+                    if (timeoutId) clearTimeout(timeoutId);
+                    input.value = '';
+                    setLoading(false);
+                    isSubmitting = false;
+                }
+            });
+
+            function setLoading(loading) {
+                button.disabled = loading;
+                button.setAttribute('aria-busy', String(loading));
+                button.textContent = loading ? 'Submitting...' : 'Get the checklist';
+
+                if (loading) {
+                    button.classList.add('lead-magnet-2__button--loading');
+                } else {
+                    button.classList.remove('lead-magnet-2__button--loading');
+                }
+            }
+
+            function showSuccessMessage() {
+                if (status) {
+                    status.classList.remove('lead-magnet-2__status--error');
+                    status.classList.add('lead-magnet-2__status--success');
+                    status.textContent = "You've just unlocked your BFCM Loyalty Toolkit. Check your email now!";
+                }
+            }
+
+            function showError(message) {
+                if (status) {
+                    status.textContent = message;
+                    status.classList.remove('lead-magnet-2__status--success');
+                    status.classList.add('lead-magnet-2__status--error');
+                } else {
+                    alert(message);
+                }
+            }
+
+            function clearStatus() {
+                if (status) {
+                    status.textContent = '';
+                    status.classList.remove('lead-magnet-2__status--error', 'lead-magnet-2__status--success');
+                }
+            }
+
+            // openChecklist helper no longer needed since we navigate immediately
+        })();
+    </script>
+</div>
