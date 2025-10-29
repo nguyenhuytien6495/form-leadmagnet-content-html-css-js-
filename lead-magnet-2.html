@@ -39,6 +39,8 @@ function doPost(e) {
 
                 <button type="submit" class="lead-magnet-2__button" aria-label="Get the toolkit">Get the
                     Toolkit</button>
+                <p class="lead-magnet-2__form-status" id="lead-magnet-2-form-status" role="status" aria-live="polite"
+                    style="display: none;"></p>
             </form>
             <p class="lead-magnet-2__status" id="lead-magnet-2-status" role="status" aria-live="polite"></p>
         </div>
@@ -157,6 +159,7 @@ function doPost(e) {
             const input = container.querySelector('.lead-magnet-2__input');
             const button = container.querySelector('.lead-magnet-2__button');
             const status = container.querySelector('.lead-magnet-2__status');
+            const formStatus = container.querySelector('.lead-magnet-2__form-status');
             const honeypot = container.querySelector('.lead-magnet-2__honeypot');
 
             // Prefill from localStorage if available
@@ -246,6 +249,9 @@ function doPost(e) {
                     status.classList.add('lead-magnet-2__status--success');
                     status.textContent = "You've just unlocked your BFCM Loyalty Toolkit. Check your email now!";
                 }
+                if (formStatus) {
+                    formStatus.textContent = "success";
+                }
             }
 
             function showError(message) {
@@ -256,12 +262,18 @@ function doPost(e) {
                 } else {
                     alert(message);
                 }
+                if (formStatus) {
+                    formStatus.textContent = "fail";
+                }
             }
 
             function clearStatus() {
                 if (status) {
                     status.textContent = '';
                     status.classList.remove('lead-magnet-2__status--error', 'lead-magnet-2__status--success');
+                }
+                if (formStatus) {
+                    formStatus.textContent = '';
                 }
             }
 
