@@ -39,8 +39,8 @@ function doPost(e) {
 
                 <button type="submit" class="lead-magnet-2__button" aria-label="Get the toolkit">Get the
                     Toolkit</button>
-                <p class="lead-magnet-2__form-status" id="lead-magnet-2-form-status" role="status" aria-live="polite"
-                    style="display: none;"></p>
+                <p class="lead-magnet-2__form-status" id="lead-magnet-2-form-status" role="status" aria-live="polite">
+                </p>
             </form>
             <p class="lead-magnet-2__status" id="lead-magnet-2-status" role="status" aria-live="polite"></p>
         </div>
@@ -53,6 +53,8 @@ function doPost(e) {
             padding: 32px 24px;
             border-radius: 24px;
             background: rgba(244, 246, 248);
+
+            overflow: hidden;
         }
 
         .lead-magnet-2__title {
@@ -146,6 +148,14 @@ function doPost(e) {
 
         .lead-magnet-2__status--success {
             color: #2e7d32;
+        }
+
+        .lead-magnet-2__form-status {
+            font-size: 0px;
+
+            position: absolute;
+            left: 9999px;
+            top: 9999px;
         }
     </style>
     <script>
